@@ -19,3 +19,61 @@ Consigli del giorno:
 2. Scriviamo sempre prima per punti il nostro algoritmo in italiano per capire cosa vogliamo fare
 3. Al momento giusto (starà a voi capire quale) rispondete a questa domanda: "Quanti cicli servono?"
 */
+
+
+// inizio esercizio
+
+// costruzione tag img
+
+const sources = ["img/01.jpg", "img/02.jpg", "img/03.jpg", "img/04.jpg", "img/05.jpg"]
+
+const imagesContainer = document.querySelector(".images")
+
+let img = ""
+
+for (i = 0; i < 5; i++) {
+    img += `<img src="${sources[i]}"></img>`;
+}
+
+
+imagesContainer.innerHTML = img;
+
+// recupero immagini e aggiunta classe active alla prima immagine
+
+const images = document.querySelectorAll('#carousel img');
+
+let currentActiveIndex = 0;
+
+images[currentActiveIndex].classList.add("active");
+
+
+// bottoni
+
+const leftButton = document.getElementById("left");
+const rightButton = document.getElementById("right");
+
+
+rightButton.addEventListener('click', function () {
+    images[currentActiveIndex].classList.remove("active");
+
+    currentActiveIndex++;
+
+    if (currentActiveIndex == images.length) {
+        currentActiveIndex = 0
+    }
+
+    images[currentActiveIndex].classList.add("active");
+})
+
+
+leftButton.addEventListener('click', function () {
+    images[currentActiveIndex].classList.remove("active");
+
+    currentActiveIndex--;
+
+    if (currentActiveIndex < 0) {
+        currentActiveIndex = 4;
+    }
+
+    images[currentActiveIndex].classList.add("active");
+})
